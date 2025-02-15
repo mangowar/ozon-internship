@@ -33,6 +33,6 @@ func ShortenLink(url string) string {
 }
 
 func TransfornLink(baseURL, short string) string {
-	res := baseURL + "/" + short
+	res := baseURL + "/r?url=" + short
 	return res
 }

@@ -43,15 +43,15 @@ func main() {
 	}
 
 	srv = shorten.NewService(st)
-	http.HandleFunc("/", server.MainHandler(srv))
+	http.HandleFunc("/", server.HandleShorten(srv))
+	http.HandleFunc("/r", server.HandleRedirect(srv))
 	go func() {
-		fmt.Println("Starting server...")
+		fmt.Println("Server started")
 		if err := http.ListenAndServe(config.Get().ListenAddr(), nil); err != nil {
-			fmt.Printf("Listen and Serve: %s\n", err)
+			log.Fatal("Can't start server")
 		}
 	}()
 	quit := make(chan os.Signal, 1)
-	log.Println("server started")
 	<-quit
 
 }
