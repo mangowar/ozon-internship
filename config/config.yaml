@@ -1,0 +1,9 @@
+base_url: "app:8080"
+host: "app"
+port: 8080
+
+db:
+  DSN: "user=ozon dbname=my_db password=123 sslmode=disable host=db port=5432"
+  database: "postgres"
+
+file_name: "storage.txt"

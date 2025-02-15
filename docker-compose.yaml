@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "my_db"
+      POSTGRES_USER: "ozon"
+      POSTGRES_PASSWORD: "123"
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ENV=local
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    command: go run main.go -s database
+
+volumes:
+  pgdata:
