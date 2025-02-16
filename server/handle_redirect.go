@@ -17,7 +17,6 @@ func HandleRedirect(red redirecter) http.HandlerFunc {
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 		url, err := red.Redirect(ctx, shoort_url)
-		fmt.Println(shoort_url, url)
 		if err != nil {
 			fmt.Println(err)
 		}
